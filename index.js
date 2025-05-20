@@ -52,6 +52,7 @@ async function run() {
 
 
         const coffeesCollection = client.db('coffeeDB').collection('coffees');
+        const usersCollection = client.db("coffeeDB").collection('users');
 
 
 
@@ -116,6 +117,16 @@ async function run() {
 
 
 
+
+
+        // user related APIs
+        app.post('/users', async (req, res)=>{
+            const userProfile = req.body;
+            console.log(userProfile);
+
+            const result = await usersCollection.insertOne(userProfile);
+            res.send(result);
+        })
 
 
 
